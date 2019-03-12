@@ -1,0 +1,43 @@
+using System;
+using System.Collections;
+
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ArrayList list = new ArrayList();
+            Console.WriteLine("Please enter int inems to the list(enter 'stop' to finish) ");
+            for (int i = 0; i >= 0; i++)
+            {
+                var y = Console.ReadLine();
+                int z;
+                    try
+                    {
+                    z = Convert.ToInt32(y);
+                    if (z.GetType() == typeof(Int32))
+                        list.Add(z);
+                    else break;
+                    }
+                    catch (FormatException ex)
+                    {
+                    if (y=="stop")
+                        break;
+                    if (y.GetType() != typeof(Int32))
+                        Console.WriteLine("Entered value is not a int. Please enter a number");
+                    continue;
+                    }
+            }
+            foreach (var x in list)
+            Console.Write(x + " ");
+            Console.WriteLine();
+            list.Sort();
+            list.Reverse();
+            foreach (var y in list)
+            Console.Write(y + " ");
+            Console.ReadKey();
+        }
+    }
+}
