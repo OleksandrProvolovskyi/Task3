@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter students and their marks: enter 'stop' to finish");
+            var students = new Dictionary<string, int>();
+            int mark;
+            for (int i = 0; i >= 0; i++)
+            {
+                string text = Console.ReadLine();
+                string surname = text.Split(':', ' ').First();
+                
+                string digit = text.Split(':', ' ').Last();
+
+                bool z = int.TryParse(string.Join("", text.Where(c => char.IsDigit(c))), out mark);
+
+                if (text == "stop")
+                {
+                    break;
+                }
+
+                else if (z == false)
+                {
+                    Console.WriteLine("Input has wrong format! Desired format: 'Sorname:mark'");
+                    continue;
+                }
+                else if (mark > 5 || mark < 1)
+                {
+                    Console.WriteLine("Mark should be a number from 1 to 5");
+                    continue;
+                }
+                students.Add(surname, mark);
+                }
+            Console.WriteLine();
+            foreach (var x in students)
+            Console.WriteLine(x.ToString() + " ");
+            Console.WriteLine();
+            Console.WriteLine("Please enter surname to see student's mark:");
+
+            for (int i = 0; i >= 0; i++)
+            {
+                string text2 = Console.ReadLine();
+                if (text2 == "exit")
+                {
+                    break;
+                }
+                if (students.TryGetValue(text2, out mark));
+                {
+                    Console.WriteLine("Student" + " " + $"{text2}" + " " + "received a" + " " + $"{mark}");
+                }
+            }
+            Console.ReadKey();
+        }
+    }
+}
